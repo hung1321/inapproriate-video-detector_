@@ -4,6 +4,8 @@ RUN useradd -m -u 1000 user
 RUN mkdir -p /data
 RUN chmod 777 /data
 USER user
+ENV TF_ENABLE_ONEDNN_OPTS = 0
+ENV TF_CPP_MIN_LOG_LEVEL = 1
 ENV HOME=/home/user \
 	PATH=/home/user/.local/bin:$PATH
 WORKDIR $HOME/app

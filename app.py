@@ -5,8 +5,8 @@ from huggingface_hub import login
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import os
 os.environ['HF_HOME'] = 'D:\code\\tinhoctre\\blabla\\cache'
-tokenizer = AutoTokenizer.from_pretrained("michellejieli/NSFW_text_classifier")
-model = AutoModelForSequenceClassification.from_pretrained("michellejieli/NSFW_text_classifier")
+#tokenizer = AutoTokenizer.from_pretrained("michellejieli/NSFW_text_classifier")
+#model = AutoModelForSequenceClassification.from_pretrained("michellejieli/NSFW_text_classifier")
 #cache_asset = cached_assets_path(assets_dir="/blabla/cache")
 app = Flask(__name__)
 @app.route("/hello")
