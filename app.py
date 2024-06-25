@@ -3,11 +3,11 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from transformers import pipeline
 from huggingface_hub import login
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+#cache_asset = cached_assets_path(assets_dir="/blabla/cache")
 import os
 os.environ['HF_HOME'] = 'D:\code\\tinhoctre\\blabla\\cache'
-#tokenizer = AutoTokenizer.from_pretrained("michellejieli/NSFW_text_classifier")
-#model = AutoModelForSequenceClassification.from_pretrained("michellejieli/NSFW_text_classifier")
-#cache_asset = cached_assets_path(assets_dir="/blabla/cache")
+tokenizer = AutoTokenizer.from_pretrained("michellejieli/NSFW_text_classifier")
+model = AutoModelForSequenceClassification.from_pretrained("michellejieli/NSFW_text_classifier")
 app = Flask(__name__)
 @app.route("/hello")
 def home():
