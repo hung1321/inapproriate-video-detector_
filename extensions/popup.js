@@ -2,7 +2,7 @@ const btn = document.getElementById("summarise");
   var result;
 btn.addEventListener("click", function() {
     btn.ariaDisabled = true;
-    btn.innerHTML = "Đang kiểm tra. Vui lòng đợi!";
+    btn.innerHTML = "Đang kiểm tra.,, Vui lòng đợi!";
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
       let url = tabs[0].url;
       alert(url);
