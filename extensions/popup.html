@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<link rel="stylesheet" href="main.css">
 <html>
     <head>
         <style>
             h1 {
                 text-align: center;
-                color: azure;
+                color: rgb(13, 13, 104);
+                font-size: 16px;
+
             }
             body {
                 width: max-content;
-                max-width: 800px;
+                max-width: 500px;
             }
             button {
-                background-color: red;
+                background-color: rgb(215, 215, 27);
                 color: white;
                 border-radius: 8px;
                 width: max-content;
-                height: max-content;
-                padding: 10px;
+                height: 65px;
+                padding: 25px;
                 font-size: large;
                 margin: auto;
+                margin-top: 20px;
                 display: block;
-                border-color: coral;
+                border-color: lightyellow;
             }
             button[disabled] {
-                background-color: lightcoral;
+                background-color: rgb(232, 232, 142);
                 color: white;
                 border-radius: 8px;
                 width: max-content;
@@ -32,6 +36,7 @@
                 padding: 10px;
                 font-size: large;
                 margin: auto;
+                margin-top: 20px;
                 display: block;
                 border-color: lightpink;
             }
@@ -39,24 +44,59 @@
                 font-size: 50px;
                 margin-bottom: 100px;
                 text-align: center;
-                color: red;
+                color: yellow;
             }
             .icon{
                 width: 100px;
                 height: 100px;
             }
             body{
-                background-image: url("images/clb.png");
+                background-color: rgb(216, 76, 76);
+            }
+            .container{
+                height: 7vh;
+                max-width: 220px;
+                margin: auto;
+            }
+            .text-box{
+                height: 7vh;
+                max-width: 350px;
+                margin: auto;
+                margin-top: -10px;
+            }
+            .text-animation{
+                background: rgb(216, 76, 76);
+                font-size: 30px;
+                font-weight: bold;
+                -webkit-animation: my 900ms infinite;
+                -moz-animation: my 900ms infinite;
+                -o-animation: my 900ms infinite;
+                animation: my 900ms infinite delay iteration-count direction fill-mode;;
+            }
+            .image{
+                margin: auto;
+                margin-top: -165px;
+                margin-bottom: 200px;
+                width: 40px;
+                height: 40px;
             }
         </style>
     </head>
     <body>
-        <h1>Ứng dụng nhận diện video không phù hợp với trẻ em</h1>
+        <section>
+            <div class="container">
+                <h1>Tiện ích nhận diện video không phù hợp với trẻ em</h1>
+            </div>
+        </section>
         <button id="summarise" type="button" >
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 <span role="status"></span>Kiểm tra</button>
         <br/>
-        <p id="output">Không phù hợp với trẻ em!!!</p>
+        <div class="text-box">
+            <p id="output" class="text-animation">Video được khuyến cáo không phù hợp với trẻ em!</p>
+            <p id="quanity" class="text-animation"></p>
+        </div>
+        <img class="image" src="images/tkn.png" alt="THPT Trần Khai Nguyên">
         <script src="popup.js"></script>
     </body>
 </html>

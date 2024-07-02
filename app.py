@@ -22,14 +22,44 @@ def create_user():
     data = request.get_json()
     url = data["url"]
     video_id = url.split("=")[1]
-    transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-    transcript = ' '.join([d['text'] for d in transcript_list])
-    transcript = transcript[:1024]
-    classifier = pipeline("text-classification", model="michellejieli/NSFW_text_classifier")
-    result = classifier(transcript)
+    try:
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+    except:
+        error ={
+            "text":"Không thể kiểm tra video này vui lòng kiểm tra lại phụ đề, ngôn ngữ và Url!",
+            "result":"Thất bại",
+            "check":"Fail",
+        }
+        return jsonify(error),201
+
+    classifier =pipeline("text-classification", model="s-nlp/roberta_toxicity_classifier")
+    count = 0
+    texts = []
+    for i in transcript_list:
+        transcript = i['text']
+        result = classifier(transcript)
+        transcript = transcript.replace("\u266a",' ')
+        transcript = transcript.replace("\n",' ')
+        transcript = transcript.strip()
+        print(transcript)
+        print(result[0]["label"])
+        if(result[0]["label"]=="toxic" and '[' not in i['text'] and '(' not in i['text']):
+            count+=1
+            texts.append(transcript)
+        if("[ __ ]" in i['text']):
+            count+=1
+    if count>=10 or count/len(transcript_list)>=0.02:
+        final_result = "NSFW"
+        print(count)
+    else:
+        final_result = "SFW"
+        print(count)
+    
     res = {
-        "text":transcript,
-        "result":result,
+        "text":texts,
+        "total":len(transcript_list),
+        "count_toxic":str(count),
+        "result":final_result,
         "check":"received successful",
     }
     return jsonify(res),201
