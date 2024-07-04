@@ -3,7 +3,7 @@
     "name": "Tiện ích AI nhận diện video không phù hợp cho trẻ em",
     "description": "Trường THPT Trần Khai Nguyên",
     "version": "1.0",
-    "permissions": ["activeTab", "declarativeContent"],
+    "permissions": ["activeTab"],
     "host_permissions": ["http://127.0.0.1:8000/*","https://tinhoctre-server-pajveyvcjq-et.a.run.app/*"],
     
     "action": {

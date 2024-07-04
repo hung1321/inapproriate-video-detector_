@@ -1,5 +1,6 @@
 const btn = document.getElementById("summarise");
   var result;
+let texts = '';
 btn.addEventListener("click", function() {
     btn.disabled = true;
     btn.innerHTML = "Đang kiểm tra... Vui lòng đợi!";
@@ -7,7 +8,8 @@ btn.addEventListener("click", function() {
       let url = tabs[0].url;
       //alert(url);
       var result;
-        fetch('https://tinhoctre-server4-pajveyvcjq-et.a.run.app', 
+      //https://tinhoctre-server4-pajveyvcjq-et.a.run.app
+        fetch('https://tinhoctre-server-pajveyvcjq-et.a.run.app/', 
             {
             method: 'POST',
             headers: {
@@ -24,7 +26,6 @@ btn.addEventListener("click", function() {
               if(data["result"]=="SFW"){
                 document.getElementById("output").innerHTML = "video phù hợp với trẻ em!!!!!";
                 alert("Video phù hợp với trẻ em");
-                
                 btn.innerHTML = "Kiểm tra";
                 btn.disabled = false;
               }
@@ -34,6 +35,11 @@ btn.addEventListener("click", function() {
                 alert("Video không phù hợp với trẻ em!!!!!");
                 btn.innerHTML="Kiểm Tra";
                 btn.disabled = false;
+                for(let x in data['text']){
+                  texts+= data['text'][x] + " \n";
+                }
+                document.getElementById("detail").innerHTML = texts;
+                
               }
             }
             else{

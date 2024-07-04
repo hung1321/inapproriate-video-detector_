@@ -9,6 +9,7 @@ import os
 #os.environ['HF_HOME'] = 'D:\code\\tinhoctre\\blabla\\cache'
 #tokenizer = AutoTokenizer.from_pretrained("michellejieli/NSFW_text_classifier")
 #model = AutoModelForSequenceClassification.from_pretrained("michellejieli/NSFW_text_classifier")
+#Model AI source 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -41,14 +42,15 @@ def create_user():
         transcript = transcript.replace("\u266a",' ')
         transcript = transcript.replace("\n",' ')
         transcript = transcript.strip()
+        transcript = transcript.lower()
         print(transcript)
         print(result[0]["label"])
-        if(result[0]["label"]=="toxic" and '[' not in i['text'] and '(' not in i['text']):
+        if((result[0]["label"]=="toxic" and '[' not in transcript and '(' not in i['text']) or "[ __ ]" in transcript ):
             count+=1
             texts.append(transcript)
-        if("[ __ ]" in i['text']):
+        if("[ __ ]" in transcript):
             count+=1
-    if count>=10 or count/len(transcript_list)>=0.02:
+    if round(count/len(transcript_list),3)>0.04:
         final_result = "NSFW"
         print(count)
     else:
