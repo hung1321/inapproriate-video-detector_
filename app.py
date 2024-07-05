@@ -22,8 +22,8 @@ def create_user():
     login(token="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")
     data = request.get_json()
     url = data["url"]
-    video_id = url.split("=")[1]
     try:
+        video_id = url.split("=")[1]
         transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
     except:
         error ={
